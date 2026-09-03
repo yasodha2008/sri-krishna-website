@@ -1,0 +1,1194 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Sri Krishna Flower Shop
+    </title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #fffaf4,
+                    #f8efe5,
+                    #fffdf9
+                );
+
+            color: #3d281c;
+
+        }
+
+
+        /* =========================================
+           NAVIGATION
+        ========================================= */
+
+        .navbar {
+
+            height: 78px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding:
+                0 6%;
+
+            background:
+                rgba(255,255,255,0.92);
+
+            backdrop-filter:
+                blur(12px);
+
+            border-bottom:
+                1px solid #eadfd4;
+
+            position: relative;
+
+            z-index: 10;
+
+        }
+
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+        }
+
+
+        .brand-icon {
+
+            width: 45px;
+
+            height: 45px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                #f7e6d3;
+
+            font-size: 23px;
+
+        }
+
+
+        .brand-name {
+
+            font-size: 21px;
+
+            font-weight: 700;
+
+            color: #57351f;
+
+        }
+
+
+        .brand-subtitle {
+
+            font-size: 11px;
+
+            color: #a1846c;
+
+            margin-top: 2px;
+
+        }
+
+
+        /* CART */
+
+        .cart {
+
+            text-decoration: none;
+
+            color: #57351f;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding:
+                10px 16px;
+
+            border:
+                1px solid #ead9c7;
+
+            border-radius: 25px;
+
+            background: #fff;
+
+            transition: .25s;
+
+        }
+
+
+        .cart:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(70,40,20,.10);
+
+        }
+
+
+        .cart-icon {
+
+            font-size: 20px;
+
+        }
+
+
+        .cart-count {
+
+            min-width: 20px;
+
+            height: 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #7c5134;
+
+            color: white;
+
+            border-radius: 50%;
+
+            font-size: 11px;
+
+        }
+
+
+        /* =========================================
+           MAIN HERO
+        ========================================= */
+
+        .hero {
+
+            min-height:
+                calc(100vh - 78px);
+
+            display: grid;
+
+            grid-template-columns:
+                1.05fr
+                .95fr;
+
+            align-items: center;
+
+            gap: 50px;
+
+            padding:
+                50px 7%;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+        /* Decorative circles */
+
+        .circle {
+
+            position: absolute;
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+        }
+
+
+        .circle-one {
+
+            width: 320px;
+
+            height: 320px;
+
+            background:
+                rgba(228,191,156,.16);
+
+            top: -130px;
+
+            right: -100px;
+
+        }
+
+
+        .circle-two {
+
+            width: 250px;
+
+            height: 250px;
+
+            background:
+                rgba(192,158,124,.10);
+
+            bottom: -120px;
+
+            left: -100px;
+
+        }
+
+
+        /* =========================================
+           LEFT CONTENT
+        ========================================= */
+
+        .hero-content {
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+
+        .welcome-label {
+
+            display: inline-block;
+
+            padding:
+                8px 15px;
+
+            border-radius: 30px;
+
+            background:
+                #f6e9dc;
+
+            color:
+                #916743;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            letter-spacing:
+                1px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .hero h1 {
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size:
+                clamp(42px, 5vw, 70px);
+
+            line-height: 1.05;
+
+            color:
+                #4d2d1b;
+
+            margin-bottom: 14px;
+
+        }
+
+
+        .hero h1 span {
+
+            color:
+                #9a704d;
+
+        }
+
+
+        .hero-description {
+
+            max-width: 560px;
+
+            font-size: 17px;
+
+            line-height: 1.8;
+
+            color:
+                #77665a;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        /* =========================================
+           LANGUAGE CARD
+        ========================================= */
+
+        .language-card {
+
+            max-width: 530px;
+
+            background:
+                rgba(255,255,255,.88);
+
+            border:
+                1px solid #eadfd5;
+
+            border-radius:
+                25px;
+
+            padding:
+                27px;
+
+            box-shadow:
+                0 20px 55px
+                rgba(70,45,25,.10);
+
+            backdrop-filter:
+                blur(12px);
+
+        }
+
+
+        .language-title {
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            color:
+                #4d2d1b;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .language-subtitle {
+
+            font-size: 13px;
+
+            color:
+                #9a8879;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .language-options {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 14px;
+
+        }
+
+
+        .language-option {
+
+            text-decoration: none;
+
+            color:
+                #4d2d1b;
+
+            border:
+                1px solid #eadbca;
+
+            background:
+                #fffdfb;
+
+            border-radius:
+                17px;
+
+            padding:
+                17px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            transition:
+                .25s ease;
+
+        }
+
+
+        .language-option:hover {
+
+            transform:
+                translateY(-4px);
+
+            border-color:
+                #c6a27f;
+
+            box-shadow:
+                0 12px 25px
+                rgba(70,45,25,.10);
+
+        }
+
+
+        .language-flag {
+
+            width: 42px;
+
+            height: 42px;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                #f5e9dc;
+
+            font-size: 21px;
+
+        }
+
+
+        .language-name {
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+        }
+
+
+        .language-small {
+
+            display: block;
+
+            font-size: 11px;
+
+            color:
+                #9b8877;
+
+            margin-top: 3px;
+
+        }
+
+
+        .arrow {
+
+            margin-left: auto;
+
+            font-size: 20px;
+
+            color:
+                #a77b56;
+
+        }
+
+
+        /* =========================================
+           QUICK FEATURES
+        ========================================= */
+
+        .features {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 18px;
+
+            margin-top: 28px;
+
+        }
+
+
+        .feature {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            font-size: 12px;
+
+            color:
+                #806d5d;
+
+        }
+
+
+        .feature-icon {
+
+            width: 28px;
+
+            height: 28px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                #f5e9dc;
+
+        }
+
+
+        /* =========================================
+           FLOWER VISUAL
+        ========================================= */
+
+        .visual {
+
+            min-height: 560px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            position: relative;
+
+        }
+
+
+        .flower-card {
+
+            width: min(440px, 90%);
+
+            height: 510px;
+
+            border-radius:
+                35px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #ead5c1,
+                    #f8eee4
+                );
+
+            position: relative;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 30px 70px
+                rgba(70,40,20,.16);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .flower-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 330px;
+
+            height: 330px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.32);
+
+            top: -90px;
+
+            right: -80px;
+
+        }
+
+
+        .flower-display {
+
+            text-align: center;
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+
+        .flower-display-main {
+
+            font-size:
+                145px;
+
+            filter:
+                drop-shadow(
+                    0 15px 20px
+                    rgba(80,45,20,.14)
+                );
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .flower-display h2 {
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 28px;
+
+            color:
+                #51321f;
+
+        }
+
+
+        .flower-display p {
+
+            margin-top: 8px;
+
+            color:
+                #826c5b;
+
+            font-size: 13px;
+
+        }
+
+
+        .floating-card {
+
+            position: absolute;
+
+            background:
+                rgba(255,255,255,.94);
+
+            padding:
+                14px 18px;
+
+            border-radius:
+                16px;
+
+            box-shadow:
+                0 12px 30px
+                rgba(60,40,20,.12);
+
+            font-size: 12px;
+
+            color:
+                #5d4431;
+
+        }
+
+
+        .floating-one {
+
+            left: 0;
+
+            top: 105px;
+
+        }
+
+
+        .floating-two {
+
+            right: -5px;
+
+            bottom: 100px;
+
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 850px) {
+
+            .hero {
+
+                grid-template-columns: 1fr;
+
+                padding:
+                    45px 6%;
+
+            }
+
+            .visual {
+
+                min-height: 450px;
+
+                order: -1;
+
+            }
+
+            .flower-card {
+
+                height: 390px;
+
+            }
+
+            .flower-display-main {
+
+                font-size: 105px;
+
+            }
+
+            .floating-one {
+
+                left: 5%;
+
+            }
+
+            .floating-two {
+
+                right: 5%;
+
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .navbar {
+
+                height: 68px;
+
+                padding:
+                    0 5%;
+
+            }
+
+            .brand-name {
+
+                font-size: 17px;
+
+            }
+
+            .brand-subtitle {
+
+                display: none;
+
+            }
+
+            .cart {
+
+                padding:
+                    8px 12px;
+
+            }
+
+            .cart-text {
+
+                display: none;
+
+            }
+
+            .hero {
+
+                padding:
+                    30px 5% 45px;
+
+            }
+
+            .hero h1 {
+
+                font-size: 42px;
+
+            }
+
+            .hero-description {
+
+                font-size: 14px;
+
+            }
+
+            .language-options {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .language-card {
+
+                padding: 20px;
+
+            }
+
+            .visual {
+
+                min-height: 360px;
+
+            }
+
+            .flower-card {
+
+                height: 330px;
+
+            }
+
+            .flower-display-main {
+
+                font-size: 85px;
+
+            }
+
+            .floating-card {
+
+                font-size: 10px;
+
+                padding:
+                    10px 12px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     NAVBAR
+========================================= -->
+
+<nav class="navbar">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            🌸
+        </div>
+
+        <div>
+
+            <div class="brand-name">
+                Sri Krishna Flower Shop
+            </div>
+
+            <div class="brand-subtitle">
+                Flowers • Garlands • Decorations
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CART -->
+
+    <a
+        href="/cart"
+        class="cart"
+    >
+
+        <span class="cart-icon">
+            🛒
+        </span>
+
+        <span class="cart-text">
+            Cart
+        </span>
+
+        <span class="cart-count">
+            0
+        </span>
+
+    </a>
+
+</nav>
+
+
+
+<!-- =========================================
+     HERO
+========================================= -->
+
+<main class="hero">
+
+
+    <div class="circle circle-one"></div>
+
+    <div class="circle circle-two"></div>
+
+
+
+    <!-- =====================================
+         LEFT
+    ====================================== -->
+
+    <section class="hero-content">
+
+
+        <div class="welcome-label">
+            WELCOME TO OUR FLOWER SHOP
+        </div>
+
+
+        <h1>
+
+            Flowers that make
+            <span>
+                moments special.
+            </span>
+
+        </h1>
+
+
+        <p class="hero-description">
+
+            Explore beautiful garlands, bouquets,
+            traditional decorations and elegant
+            floral arrangements created for your
+            special occasions.
+
+        </p>
+
+
+
+        <!-- LANGUAGE -->
+
+        <div class="language-card">
+
+
+            <div class="language-title">
+
+                Choose your language
+
+            </div>
+
+
+            <div class="language-subtitle">
+
+                உங்கள் மொழியைத் தேர்ந்தெடுக்கவும்
+
+            </div>
+
+
+            <div class="language-options">
+
+
+                <!-- ENGLISH -->
+
+                <a
+                    href="/home?lang=en"
+                    class="language-option"
+                >
+
+                    <div class="language-flag">
+                        🇬🇧
+                    </div>
+
+                    <div>
+
+                        <div class="language-name">
+                            English
+                        </div>
+
+                        <span class="language-small">
+                            Continue in English
+                        </span>
+
+                    </div>
+
+                    <div class="arrow">
+                        →
+                    </div>
+
+                </a>
+
+
+
+                <!-- TAMIL -->
+
+                <a
+                    href="/home?lang=ta"
+                    class="language-option"
+                >
+
+                    <div class="language-flag">
+                        🇮🇳
+                    </div>
+
+                    <div>
+
+                        <div class="language-name">
+                            தமிழ்
+                        </div>
+
+                        <span class="language-small">
+                            தமிழில் தொடரவும்
+                        </span>
+
+                    </div>
+
+                    <div class="arrow">
+                        →
+                    </div>
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- FEATURES -->
+
+        <div class="features">
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🌺
+                </div>
+
+                Fresh Flowers
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    ✨
+                </div>
+
+                Beautiful Designs
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🛒
+                </div>
+
+                Easy Ordering
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================
+         RIGHT VISUAL
+    ====================================== -->
+
+    <section class="visual">
+
+
+        <div class="flower-card">
+
+
+            <div class="flower-display">
+
+                <div class="flower-display-main">
+                    💐
+                </div>
+
+                <h2>
+                    Sri Krishna
+                </h2>
+
+                <p>
+                    Traditional beauty • Modern elegance
+                </p>
+
+            </div>
+
+
+            <div class="floating-card floating-one">
+                🌸 Fresh Floral Arrangements
+            </div>
+
+
+            <div class="floating-card floating-two">
+                🪷 Made for Your Special Day
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+</body>
+
+</html>
+```

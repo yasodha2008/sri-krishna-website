@@ -1,0 +1,858 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+
+    --wine: #762342;
+    --wine-dark: #54162e;
+
+    --rose: #b95778;
+    --gold: #b28b45;
+
+    --cream: #fffaf7;
+    --soft: #f8eef2;
+
+    --text: #292326;
+    --muted: #81777c;
+
+    --border: #eadfe3;
+
+    --white: #ffffff;
+}
+
+
+body {
+
+    font-family: "DM Sans", sans-serif;
+
+    background: var(--cream);
+
+    color: var(--text);
+
+    min-height: 100vh;
+}
+
+
+.login-page {
+
+    min-height: 100vh;
+
+    display: grid;
+
+    grid-template-columns: 1.05fr .95fr;
+}
+
+
+/* ==================================================
+   LEFT SIDE
+================================================== */
+
+.floral-side {
+
+    position: relative;
+
+    min-height: 100vh;
+
+    overflow: hidden;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(76,20,43,.82),
+            rgba(130,38,72,.55)
+        ),
+
+        url("https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=1400&q=85");
+
+    background-size: cover;
+
+    background-position: center;
+}
+
+
+.floral-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255,220,232,.20),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(235,190,208,.18),
+            transparent 30%
+        );
+}
+
+
+.floral-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    height: 100%;
+
+    min-height: 100vh;
+
+    padding: 45px 55px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    color: white;
+}
+
+
+/* BRAND */
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    text-decoration: none;
+
+    color: white;
+}
+
+
+.brand-logo {
+
+    width: 46px;
+
+    height: 46px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 13px;
+
+    background: rgba(255,255,255,.16);
+
+    border: 1px solid rgba(255,255,255,.3);
+
+    backdrop-filter: blur(8px);
+
+    font-family: "Playfair Display", serif;
+
+    font-weight: 700;
+
+    font-size: 16px;
+}
+
+
+.brand strong {
+
+    display: block;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 20px;
+}
+
+
+.brand span {
+
+    display: block;
+
+    margin-top: 2px;
+
+    color: #f0d18b;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    font-weight: 700;
+}
+
+
+/* MESSAGE */
+
+.floral-message {
+
+    max-width: 560px;
+}
+
+
+.small-title {
+
+    color: #f1d28f;
+
+    font-size: 8px;
+
+    letter-spacing: 2.5px;
+
+    font-weight: 700;
+}
+
+
+.floral-message h1 {
+
+    margin-top: 18px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(45px, 5vw, 68px);
+
+    line-height: 1.04;
+
+    font-weight: 500;
+
+    letter-spacing: -1px;
+}
+
+
+.floral-message h1 span {
+
+    color: #f2c8d7;
+}
+
+
+.floral-message p {
+
+    max-width: 480px;
+
+    margin-top: 22px;
+
+    color: rgba(255,255,255,.78);
+
+    font-size: 13px;
+
+    line-height: 1.8;
+}
+
+
+.floral-bottom {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: rgba(255,255,255,.65);
+
+    font-size: 9px;
+
+    letter-spacing: .5px;
+}
+
+
+.floral-bottom span {
+
+    color: #e6c16f;
+
+    font-size: 14px;
+}
+
+
+/* ==================================================
+   LOGIN SIDE
+================================================== */
+
+.login-side {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 40px;
+}
+
+
+.login-card {
+
+    width: 100%;
+
+    max-width: 430px;
+}
+
+
+/* MOBILE BRAND */
+
+.mobile-brand {
+
+    display: none;
+}
+
+
+/* HEADING */
+
+.login-heading {
+
+    text-align: center;
+
+    margin-bottom: 32px;
+}
+
+
+.flower-symbol {
+
+    width: 45px;
+
+    height: 45px;
+
+    display: grid;
+
+    place-items: center;
+
+    margin: 0 auto 13px;
+
+    border-radius: 50%;
+
+    background: var(--soft);
+
+    color: var(--rose);
+
+    font-size: 22px;
+}
+
+
+.login-heading h2 {
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 36px;
+
+    font-weight: 600;
+
+    color: var(--text);
+}
+
+
+.login-heading p {
+
+    margin-top: 7px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+/* FORM */
+
+.login-form {
+
+    width: 100%;
+}
+
+
+.input-group {
+
+    margin-bottom: 20px;
+}
+
+
+.input-group label,
+.password-label label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--text);
+
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+
+.password-label {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+
+.password-label a {
+
+    color: var(--wine);
+
+    text-decoration: none;
+
+    font-size: 9px;
+
+    font-weight: 600;
+}
+
+
+.input-box {
+
+    height: 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 0 14px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: white;
+
+    transition: .2s;
+}
+
+
+.input-box:focus-within {
+
+    border-color: var(--rose);
+
+    box-shadow:
+        0 0 0 4px rgba(185,87,120,.08);
+}
+
+
+.input-box > span {
+
+    color: var(--rose);
+
+    font-size: 15px;
+
+    width: 18px;
+
+    text-align: center;
+}
+
+
+.input-box input {
+
+    flex: 1;
+
+    border: 0;
+
+    outline: 0;
+
+    background: transparent;
+
+    color: var(--text);
+
+    font-family: inherit;
+
+    font-size: 11px;
+}
+
+
+.input-box input::placeholder {
+
+    color: #b0a5aa;
+}
+
+
+.show-password {
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--muted);
+
+    cursor: pointer;
+
+    font-size: 13px;
+}
+
+
+/* REMEMBER */
+
+.remember {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    margin-bottom: 20px;
+}
+
+
+.remember input {
+
+    accent-color: var(--wine);
+}
+
+
+/* BUTTON */
+
+.login-btn {
+
+    width: 100%;
+
+    height: 50px;
+
+    border: 0;
+
+    border-radius: 13px;
+
+    background: var(--wine);
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    transition: .25s;
+
+    box-shadow:
+        0 10px 25px rgba(118,35,66,.18);
+}
+
+
+.login-btn:hover {
+
+    background: var(--wine-dark);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 14px 30px rgba(118,35,66,.24);
+}
+
+
+.login-btn span {
+
+    font-size: 17px;
+}
+
+
+/* DIVIDER */
+
+.divider {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin: 27px 0;
+}
+
+
+.divider::before,
+.divider::after {
+
+    content: "";
+
+    height: 1px;
+
+    flex: 1;
+
+    background: var(--border);
+}
+
+
+.divider span {
+
+    color: #b2a7ab;
+
+    font-size: 9px;
+}
+
+
+/* REGISTER */
+
+.register {
+
+    text-align: center;
+}
+
+
+.register p {
+
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+
+.register a {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: 6px;
+
+    color: var(--wine);
+
+    text-decoration: none;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+.register a span {
+
+    font-size: 14px;
+}
+
+
+/* SECURITY */
+
+.secure {
+
+    margin-top: 32px;
+
+    padding: 13px 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    border-radius: 12px;
+
+    background: var(--soft);
+}
+
+
+.secure > span {
+
+    font-size: 15px;
+}
+
+
+.secure strong {
+
+    display: block;
+
+    color: var(--text);
+
+    font-size: 9px;
+}
+
+
+.secure small {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 8px;
+}
+
+
+/* ==================================================
+   TABLET
+================================================== */
+
+@media(max-width:900px) {
+
+    .login-page {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .floral-side {
+
+        min-height: 310px;
+
+        height: 310px;
+    }
+
+
+    .floral-content {
+
+        min-height: 310px;
+
+        padding: 28px 35px;
+    }
+
+
+    .floral-message {
+
+        margin-top: auto;
+    }
+
+
+    .floral-message h1 {
+
+        font-size: 42px;
+    }
+
+
+    .floral-message p,
+    .floral-bottom {
+
+        display: none;
+    }
+
+
+    .login-side {
+
+        min-height: auto;
+
+        padding: 50px 25px;
+    }
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media(max-width:550px) {
+
+    .floral-side {
+
+        min-height: 230px;
+
+        height: 230px;
+    }
+
+
+    .floral-content {
+
+        min-height: 230px;
+
+        padding: 22px;
+    }
+
+
+    .brand {
+
+        display: none;
+    }
+
+
+    .floral-message {
+
+        margin: 0;
+
+        align-self: center;
+
+        text-align: center;
+    }
+
+
+    .small-title {
+
+        font-size: 7px;
+    }
+
+
+    .floral-message h1 {
+
+        margin-top: 10px;
+
+        font-size: 36px;
+    }
+
+
+    .login-side {
+
+        padding: 35px 22px 50px;
+    }
+
+
+    .mobile-brand {
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        gap: 10px;
+
+        margin-bottom: 30px;
+    }
+
+
+    .mobile-brand strong {
+
+        display: block;
+
+        font-family: "Playfair Display", serif;
+
+        color: var(--wine);
+
+        font-size: 18px;
+    }
+
+
+    .mobile-brand span {
+
+        display: block;
+
+        color: var(--gold);
+
+        font-size: 6px;
+
+        letter-spacing: 1.8px;
+
+        font-weight: 700;
+    }
+
+
+    .login-heading h2 {
+
+        font-size: 31px;
+    }
+
+
+    .login-heading {
+
+        margin-bottom: 26px;
+    }
+}

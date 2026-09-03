@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sri Krishna | Admin</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+
+<body>
+
+<div class="admin-container">
+
+    <header class="admin-header">
+
+        <div>
+            <span>SRI KRISHNA FLOWER SHOP</span>
+            <h1>Admin Dashboard</h1>
+        </div>
+
+        <a href="/" class="home-button">
+            View Shop
+        </a>
+
+    </header>
+
+
+    <section class="admin-card">
+
+        <div class="card-heading">
+            <span>PRODUCT MANAGEMENT</span>
+            <h2>Add New Product</h2>
+            <p>
+                Upload a new flower or decoration product
+                to your online shop.
+            </p>
+        </div>
+
+
+        <form action="/admin/add-product"
+              method="POST"
+              enctype="multipart/form-data">
+
+
+            <!-- PRODUCT NAME -->
+
+            <div class="form-group">
+
+                <label>
+                    Product Name
+                </label>
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Example: Jasmine Wedding Garland"
+                    required>
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="form-group">
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    name="description"
+                    placeholder="Describe the product..."
+                    rows="4"></textarea>
+
+            </div>
+
+
+            <div class="form-row">
+
+
+                <!-- PRICE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Price (₹)
+                    </label>
+
+                    <input
+                        type="number"
+                        name="price"
+                        min="0"
+                        step="0.01"
+                        placeholder="500"
+                        required>
+
+                </div>
+
+
+                <!-- COLOUR -->
+
+                <div class="form-group">
+
+                    <label>
+                        Colour
+                    </label>
+
+                    <select name="color" required>
+
+                        <option value="">
+                            Select Colour
+                        </option>
+
+                        <option value="Red">
+                            Red
+                        </option>
+
+                        <option value="White">
+                            White
+                        </option>
+
+                        <option value="Yellow">
+                            Yellow
+                        </option>
+
+                        <option value="Pink">
+                            Pink
+                        </option>
+
+                        <option value="Orange">
+                            Orange
+                        </option>
+
+                        <option value="Purple">
+                            Purple
+                        </option>
+
+                        <option value="Mixed">
+                            Mixed
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- CATEGORY -->
+
+            <div class="form-group">
+
+                <label>
+                    Category
+                </label>
+
+                <select name="category_id" required>
+
+                    <option value="">
+                        Select Category
+                    </option>
+
+                    {% for category in categories %}
+
+                    <option value="{{ category.id }}">
+                        {{ category.name }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <!-- IMAGE -->
+
+            <div class="form-group">
+
+                <label>
+                    Product Image
+                </label>
+
+                <input
+                    type="file"
+                    name="image"
+                    accept="image/jpeg,image/png,image/webp"
+                    required>
+
+                <small>
+                    JPG, PNG or WEBP • Maximum 5 MB
+                </small>
+
+            </div>
+
+
+            <!-- SUBMIT -->
+
+            <button
+                type="submit"
+                class="add-product-button">
+
+                🌸 Add Product
+
+            </button>
+
+        </form>
+
+    </section>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+
+<html lang="{{ 'ta' if lang == 'ta' else 'en' }}">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>
+    {% if lang == 'ta' %}
+        ஸ்ரீ கிருஷ்ணா பூக்கடை
+    {% else %}
+        Sri Krishna Flower Shop
+    {% endif %}
+</title>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family:
+            Arial,
+            "Noto Sans Tamil",
+            sans-serif;
+
+        background: #fffafc;
+        color: #333;
+    }
+
+
+    /* =========================================
+       HEADER
+    ========================================= */
+
+    header {
+        width: 100%;
+        background: white;
+        padding: 18px 25px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .logo {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .logo span {
+        display: block;
+        font-size: 14px;
+        font-weight: normal;
+        margin-top: 3px;
+    }
+
+    .language-buttons {
+        display: flex;
+        gap: 8px;
+    }
+
+    .language-buttons a {
+        text-decoration: none;
+        padding: 8px 14px;
+        border-radius: 20px;
+        border: 1px solid #ddd;
+        color: #333;
+        background: white;
+        font-size: 14px;
+    }
+
+    .language-buttons a.active {
+        background: #333;
+        color: white;
+    }
+
+
+    /* =========================================
+       MAIN LAYOUT
+    ========================================= */
+
+    .layout {
+        display: flex;
+        min-height: calc(100vh - 75px);
+    }
+
+
+    /* =========================================
+       SIDEBAR
+    ========================================= */
+
+    .sidebar {
+        width: 270px;
+        background: white;
+        border-right: 1px solid #eee;
+        padding: 25px 15px;
+        position: sticky;
+        top: 75px;
+        height: calc(100vh - 75px);
+        overflow-y: auto;
+    }
+
+    .sidebar-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 18px;
+        padding: 0 10px;
+    }
+
+    .category-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        color: #444;
+        padding: 12px 14px;
+        margin-bottom: 6px;
+        border-radius: 10px;
+        transition: 0.2s;
+    }
+
+    .category-link:hover {
+        background: #f7f7f7;
+    }
+
+    .category-link.active {
+        background: #333;
+        color: white;
+    }
+
+    .category-icon {
+        width: 30px;
+        text-align: center;
+        font-size: 20px;
+    }
+
+
+    /* =========================================
+       CONTENT
+    ========================================= */
+
+    .content {
+        flex: 1;
+        padding: 35px;
+        min-width: 0;
+    }
+
+    .page-title {
+        font-size: 30px;
+        margin-bottom: 8px;
+    }
+
+    .page-subtitle {
+        color: #777;
+        margin-bottom: 28px;
+    }
+
+
+    /* =========================================
+       PHOTO GRID
+    ========================================= */
+
+    .photo-grid {
+        display: grid;
+        grid-template-columns:
+            repeat(auto-fill, minmax(230px, 1fr));
+
+        gap: 22px;
+    }
+
+    .photo-card {
+        background: white;
+        border-radius: 14px;
+        overflow: hidden;
+
+        box-shadow:
+            0 4px 15px rgba(0,0,0,0.08);
+
+        transition:
+            transform 0.2s,
+            box-shadow 0.2s;
+    }
+
+    .photo-card:hover {
+        transform: translateY(-4px);
+
+        box-shadow:
+            0 8px 25px rgba(0,0,0,0.12);
+    }
+
+    .photo-image-container {
+        width: 100%;
+        height: 250px;
+        background: #f5f5f5;
+        overflow: hidden;
+    }
+
+    .photo-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .photo-info {
+        padding: 15px;
+    }
+
+    .photo-title {
+        font-size: 17px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .photo-category {
+        font-size: 13px;
+        color: #888;
+    }
+
+
+    /* =========================================
+       EMPTY STATE
+    ========================================= */
+
+    .empty {
+        text-align: center;
+        padding: 70px 20px;
+        color: #777;
+    }
+
+    .empty-icon {
+        font-size: 55px;
+        margin-bottom: 15px;
+    }
+
+    .empty h2 {
+        margin-bottom: 8px;
+    }
+
+
+    /* =========================================
+       ADMIN BUTTON
+    ========================================= */
+
+    .admin-link {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        text-decoration: none;
+        background: #333;
+        color: white;
+        padding: 12px 18px;
+        border-radius: 25px;
+        font-size: 14px;
+        z-index: 100;
+    }
+
+
+    /* =========================================
+       MOBILE
+    ========================================= */
+
+    @media (max-width: 800px) {
+
+        header {
+            padding: 14px 15px;
+        }
+
+        .logo {
+            font-size: 19px;
+        }
+
+        .logo span {
+            font-size: 11px;
+        }
+
+        .layout {
+            display: block;
+        }
+
+        .sidebar {
+            width: 100%;
+            height: auto;
+            position: relative;
+            top: 0;
+            border-right: none;
+            border-bottom: 1px solid #eee;
+            padding: 12px;
+        }
+
+        .sidebar-title {
+            margin-bottom: 10px;
+        }
+
+        .category-list {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+
+        .category-link {
+            flex-shrink: 0;
+            margin-bottom: 0;
+            padding: 9px 12px;
+            white-space: nowrap;
+            border: 1px solid #eee;
+        }
+
+        .category-icon {
+            width: auto;
+        }
+
+        .content {
+            padding: 22px 15px;
+        }
+
+        .page-title {
+            font-size: 24px;
+        }
+
+        .photo-grid {
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 12px;
+        }
+
+        .photo-image-container {
+            height: 190px;
+        }
+
+        .photo-info {
+            padding: 10px;
+        }
+
+        .photo-title {
+            font-size: 14px;
+        }
+
+        .photo-category {
+            font-size: 11px;
+        }
+
+        .admin-link {
+            right: 12px;
+            bottom: 12px;
+        }
+    }
+
+
+    @media (max-width: 430px) {
+
+        .photo-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .photo-image-container {
+            height: 270px;
+        }
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+```
+<div class="logo">
+
+    🌸
+
+    {% if lang == 'ta' %}
+
+        ஸ்ரீ கிருஷ்ணா பூக்கடை
+
+        <span>
+            அழகான பூ அலங்காரங்கள்
+        </span>
+
+    {% else %}
+
+        Sri Krishna Flower Shop
+
+        <span>
+            Beautiful Flower Decorations
+        </span>
+
+    {% endif %}
+
+</div>
+
+
+<div class="language-buttons">
+
+    <a
+        href="{{ url_for('home', lang='en', category=category) }}"
+        class="{{ 'active' if lang == 'en' else '' }}"
+    >
+        English
+    </a>
+
+    <a
+        href="{{ url_for('home', lang='ta', category=category) }}"
+        class="{{ 'active' if lang == 'ta' else '' }}"
+    >
+        தமிழ்
+    </a>
+
+</div>
+```
+
+</header>
+
+<!-- =====================================================
+     MAIN LAYOUT
+===================================================== -->
+
+<div class="layout">
+
+```
+<!-- =================================================
+     SIDEBAR
+================================================= -->
+
+<aside class="sidebar">
+
+    <div class="sidebar-title">
+
+        {% if lang == 'ta' %}
+            வகைகள்
+        {% else %}
+            Categories
+        {% endif %}
+
+    </div>
+
+
+    <div class="category-list">
+
+
+        <!-- ALL -->
+
+        <a
+            href="{{ url_for('home', lang=lang, category='all') }}"
+            class="category-link
+            {{ 'active' if category == 'all' else '' }}"
+        >
+
+            <span class="category-icon">
+                🌸
+            </span>
+
+            <span>
+
+                {% if lang == 'ta' %}
+                    அனைத்தும்
+                {% else %}
+                    All
+                {% endif %}
+
+            </span>
+
+        </a>
+
+
+        <!-- DATABASE CATEGORIES -->
+
+        {% for item in categories %}
+
+            <a
+                href="{{ url_for(
+                    'home',
+                    lang=lang,
+                    category=item.id
+                ) }}"
+                class="category-link
+                {{ 'active' if category|string == item.id|string else '' }}"
+            >
+
+                <span class="category-icon">
+
+                    {% if item.name == 'Bouquet' %}
+                        💐
+
+                    {% elif item.name == 'Crown' %}
+                        👑
+
+                    {% elif item.name == 'Hair Decoration' %}
+                        🌸
+
+                    {% elif item.name == 'Hall Decoration' %}
+                        🏛️
+
+                    {% elif item.name == 'Temple Sculpture Decoration' %}
+                        🛕
+
+                    {% elif item.name == 'Flower Kolams' %}
+                        🌼
+
+                    {% elif item.name == 'Large Garlands' %}
+                        🌺
+
+                    {% elif item.name == 'Money Garlands' %}
+                        💰
+
+                    {% elif item.name == 'Wedding Garlands' %}
+                        💐
+
+                    {% elif item.name == 'Stage Decorations' %}
+                        🎉
+
+                    {% else %}
+                        🌸
+
+                    {% endif %}
+
+                </span>
+
+
+                <span>
+
+                    {{ item.display_name }}
+
+                </span>
+
+            </a>
+
+        {% endfor %}
+
+
+    </div>
+
+</aside>
+
+
+<!-- =================================================
+     MAIN CONTENT
+================================================= -->
+
+<main class="content">
+
+
+    <!-- =================================================
+         PAGE TITLE
+    ================================================= -->
+
+    <h1 class="page-title">
+
+        {% if category == 'all' %}
+
+            {% if lang == 'ta' %}
+                எங்கள் மலர் அலங்காரங்கள்
+            {% else %}
+                Our Flower Decorations
+            {% endif %}
+
+
+        {% else %}
+
+            {% for item in categories %}
+
+                {% if category|string == item.id|string %}
+
+                    {{ item.display_name }}
+
+                {% endif %}
+
+            {% endfor %}
+
+        {% endif %}
+
+    </h1>
+
+
+    <!-- =================================================
+         PHOTO COUNT
+    ================================================= -->
+
+    <p class="page-subtitle">
+
+        {% if lang == 'ta' %}
+
+            {% if photos|length == 0 %}
+                தற்போது புகைப்படங்கள் இல்லை
+            {% else %}
+                {{ photos|length }} புகைப்படங்கள்
+            {% endif %}
+
+        {% else %}
+
+            {% if photos|length == 0 %}
+                No photographs available
+            {% else %}
+                {{ photos|length }} photographs
+            {% endif %}
+
+        {% endif %}
+
+    </p>
+
+
+    <!-- =================================================
+         PHOTO GRID
+    ================================================= -->
+
+    {% if photos %}
+
+        <div class="photo-grid">
+
+
+            {% for photo in photos %}
+
+                <div class="photo-card">
+
+
+                    <!-- IMAGE -->
+
+                    <div class="photo-image-container">
+
+                        <img
+                            src="{{ photo.image_url }}"
+                            alt="{{
+                                photo.title_english
+                                or 'Flower Decoration'
+                            }}"
+                            class="photo-image"
+                            loading="lazy"
+                            onerror="this.parentElement.innerHTML='<div style=&quot;height:100%;display:flex;align-items:center;justify-content:center;color:#999;&quot;>Image unavailable</div>';"
+                        >
+
+                    </div>
+
+
+                    <!-- PHOTO INFORMATION -->
+
+                    <div class="photo-info">
+
+
+                        <!-- TITLE -->
+
+                        <div class="photo-title">
+
+                            {% if lang == 'ta' %}
+
+                                {{ photo.title_tamil
+                                   or photo.title_english
+                                   or 'மலர் அலங்காரம்' }}
+
+                            {% else %}
+
+                                {{ photo.title_english
+                                   or 'Flower Decoration' }}
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <!-- CATEGORY -->
+
+                        <div class="photo-category">
+
+                            {% for item in categories %}
+
+                                {% if photo.flower_type == item.name %}
+
+                                    {% if lang == 'ta' %}
+
+                                        {{ item.name_tamil }}
+
+                                    {% else %}
+
+                                        {{ item.name }}
+
+                                    {% endif %}
+
+                                {% endif %}
+
+                            {% endfor %}
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+    {% else %}
+
+
+        <!-- =================================================
+             EMPTY STATE
+        ================================================= -->
+
+        <div class="empty">
+
+            <div class="empty-icon">
+                🌸
+            </div>
+
+            <h2>
+
+                {% if lang == 'ta' %}
+                    புகைப்படங்கள் இல்லை
+                {% else %}
+                    No photographs found
+                {% endif %}
+
+            </h2>
+
+            <p>
+
+                {% if lang == 'ta' %}
+
+                    இந்த வகையில் இன்னும் புகைப்படங்கள்
+                    சேர்க்கப்படவில்லை.
+
+                {% else %}
+
+                    No photographs have been added
+                    to this category yet.
+
+                {% endif %}
+
+            </p>
+
+        </div>
+
+    {% endif %}
+
+
+</main>
+```
+
+</div>
+
+<!-- =====================================================
+     ADMIN BUTTON
+===================================================== -->
+
+<a
+href="{{ url_for('admin_login') }}"
+class="admin-link"
+
+>
+
+```
+{% if lang == 'ta' %}
+    நிர்வாகி
+{% else %}
+    Admin
+{% endif %}
+```
+
+</a>
+
+</body>
+
+</html>

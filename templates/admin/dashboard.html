@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard - Sri Krishna Flower Shop</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #fff8fb;
+            color: #333;
+        }
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background: linear-gradient(
+                180deg,
+                #7b1e3a,
+                #a83258,
+                #c85c7c
+            );
+            color: white;
+            padding: 25px 15px;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.15);
+            z-index: 1000;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .logo .flower {
+            font-size: 42px;
+        }
+
+        .logo h2 {
+            font-size: 20px;
+            margin-top: 8px;
+        }
+
+        .logo p {
+            font-size: 12px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+
+        .menu {
+            list-style: none;
+        }
+
+        .menu li {
+            margin: 8px 0;
+        }
+
+        .menu a {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 13px 15px;
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .menu a:hover,
+        .menu a.active {
+            background: rgba(255,255,255,0.20);
+            transform: translateX(4px);
+        }
+
+        .menu-icon {
+            font-size: 20px;
+        }
+
+        .logout {
+            position: absolute;
+            bottom: 25px;
+            left: 15px;
+            right: 15px;
+        }
+
+        .logout a {
+            background: rgba(0,0,0,0.15);
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .main {
+            margin-left: 250px;
+            min-height: 100vh;
+        }
+
+        /* =========================
+           TOP BAR
+        ========================= */
+
+        .topbar {
+            height: 75px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 35px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 500;
+        }
+
+        .topbar h1 {
+            color: #7b1e3a;
+            font-size: 24px;
+        }
+
+        .admin-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #f7d5df;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+        }
+
+        /* =========================
+           CONTENT
+        ========================= */
+
+        .content {
+            padding: 30px 35px;
+        }
+
+        .welcome {
+            background:
+                linear-gradient(
+                    120deg,
+                    rgba(123,30,58,0.95),
+                    rgba(200,92,124,0.9)
+                );
+            color: white;
+            border-radius: 18px;
+            padding: 30px;
+            margin-bottom: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome::after {
+            content: "🌸 🌺 🌼 🌷";
+            position: absolute;
+            right: 30px;
+            bottom: 15px;
+            font-size: 45px;
+            opacity: 0.22;
+            letter-spacing: 8px;
+        }
+
+        .welcome h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            opacity: 0.9;
+        }
+
+        /* =========================
+           STAT CARDS
+        ========================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 22px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .stat-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 14px;
+            background: #f8dce5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 27px;
+        }
+
+        .stat-card h3 {
+            color: #7b1e3a;
+            font-size: 25px;
+        }
+
+        .stat-card p {
+            color: #777;
+            font-size: 13px;
+        }
+
+        /* =========================
+           SECTION HEADER
+        ========================= */
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-header h2 {
+            color: #7b1e3a;
+            font-size: 23px;
+        }
+
+        .add-btn {
+            background: #7b1e3a;
+            color: white;
+            padding: 11px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .add-btn:hover {
+            background: #5e172d;
+        }
+
+        /* =========================
+           CATEGORY GRID
+        ========================= */
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(123,30,58,0.15);
+        }
+
+        .category-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .no-image {
+            height: 180px;
+            background: #f9e5ec;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 55px;
+        }
+
+        .category-body {
+            padding: 18px;
+        }
+
+        .category-number {
+            color: #c85c7c;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .category-body h3 {
+            color: #7b1e3a;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .tamil-name {
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .upload-btn,
+        .delete-btn {
+            flex: 1;
+            padding: 9px;
+            border-radius: 7px;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .upload-btn {
+            background: #f7d5df;
+            color: #7b1e3a;
+        }
+
+        .delete-btn {
+            background: #f5eeee;
+            color: #b3261e;
+        }
+
+        /* =========================
+           UPLOAD BOX
+        ========================= */
+
+        .upload-section {
+            margin-top: 35px;
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .upload-section h2 {
+            color: #7b1e3a;
+            margin-bottom: 20px;
+        }
+
+        .upload-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 15px;
+            align-items: end;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ddd;
+            border-radius: 7px;
+            background: white;
+        }
+
+        .submit-btn {
+            padding: 11px 20px;
+            background: #7b1e3a;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #5e172d;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+            text-align: center;
+            padding: 25px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 1100px) {
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 750px) {
+
+            .sidebar {
+                width: 70px;
+                padding: 15px 8px;
+            }
+
+            .logo h2,
+            .logo p,
+            .menu-text {
+                display: none;
+            }
+
+            .logo .flower {
+                font-size: 30px;
+            }
+
+            .menu a {
+                justify-content: center;
+                padding: 13px 5px;
+            }
+
+            .logout {
+                left: 8px;
+                right: 8px;
+            }
+
+            .main {
+                margin-left: 70px;
+            }
+
+            .topbar {
+                padding: 0 15px;
+            }
+
+            .content {
+                padding: 20px 15px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .upload-form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <div class="flower">🌸</div>
+
+        <h2>Sri Krishna</h2>
+
+        <p>Flower Shop Admin</p>
+
+    </div>
+
+
+    <ul class="menu">
+
+        <li>
+            <a href="{{ url_for('admin_dashboard') }}" class="active">
+                <span class="menu-icon">🏠</span>
+                <span class="menu-text">Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('home') }}">
+                <span class="menu-icon">🌷</span>
+                <span class="menu-text">View Shop</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#categories">
+                <span class="menu-icon">💐</span>
+                <span class="menu-text">Categories</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#upload">
+                <span class="menu-icon">📷</span>
+                <span class="menu-text">Upload Images</span>
+            </a>
+        </li>
+
+    </ul>
+
+
+    <div class="logout">
+
+        <a href="{{ url_for('logout') }}">
+            <span class="menu-icon">🚪</span>
+            <span class="menu-text">Logout</span>
+        </a>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="main">
+
+
+    <!-- TOP BAR -->
+
+    <header class="topbar">
+
+        <h1>🌺 Admin Dashboard</h1>
+
+        <div class="admin-info">
+
+            <div class="admin-avatar">
+                👤
+            </div>
+
+            <div>
+                <strong>Administrator</strong>
+                <small style="display:block;color:#888;">
+                    Sri Krishna Flower Shop
+                </small>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- CONTENT -->
+
+    <div class="content">
+
+
+        <!-- WELCOME -->
+
+        <section class="welcome">
+
+            <h2>Welcome, Admin! 🌸</h2>
+
+            <p>
+                Manage your flower collections, categories and
+                shop images from one place.
+            </p>
+
+        </section>
+
+
+        <!-- STATISTICS -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🌺
+                </div>
+
+                <div>
+                    <h3>10</h3>
+                    <p>Categories</p>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    💐
+                </div>
+
+                <div>
+                    <h3>
+                        {{ flowers|length if flowers is defined else 0 }}
+                    </h3>
+
+                    <p>Flower Images</p>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🌸
+                </div>
+
+                <div>
+                    <h3>2</h3>
+                    <p>Languages</p>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🪷
+                </div>
+
+                <div>
+                    <h3>Active</h3>
+                    <p>Shop Status</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CATEGORY SECTION -->
+
+        <section id="categories">
+
+            <div class="section-header">
+
+                <h2>🌷 Flower Categories</h2>
+
+                <a href="#upload" class="add-btn">
+                    + Upload Image
+                </a>
+
+            </div>
+
+
+            <div class="category-grid">
+
+
+                <!-- 1 -->
+
+                <div class="category-card">
+
+                    <div class="no-image">
+                        💰
+                    </div>
+
+                    <div class="category-body">
+
+                        <div class="category-number">
+                            CATEGORY 01
+                        </div>
+
+                        <h3>Money Garlands</h3>
+
+                        <div class="tamil-name">
+                            பண மாலைகள்
+                        </div>
+
+                        <div class="card-actions">
+
+                            <a href="#upload"
+                               class="upload-btn">
+                                📷 Upload
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 2 -->
+
+                <div class="category-card">
+
+                    <div class="no-image">
+                        🌹
+                    </div>
+
+                    <div class="category-body">
+
+                        <div class="category-number">
+                            CATEGORY 02
+                        </div>
+
+                        <h3>Wedding Garlands</h3>
+
+                        <div class="tamil-name">
+                            திருமண மாலைகள்
+                        </div>
+
+                        <div class="card-actions">
+
+                            <a href="#upload"
+                               class="upload-btn">
+                                📷 Upload
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 3 -->
+
+                <div class="category-card">
+
+                    <div class="no-image">
+                        🏡
+                    </div>
+
+                    <div class="category-body">
+
+                        <div class="category-number">
+                            CATEGORY 03
+                        </div>
+
+                        <h3>House Entrance Decorations</h3>
+
+                        <div class="tamil-name">
+                            வீட்டு வாசல் அலங்காரம்
+                        </div>
+
+                        <div class="card-actions">
+
+                            <a href="#upload"
+                               class="upload-btn">
+                                📷 Upload
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 4 -->
+
+                <div class="category-card">
+
+                    <div class="no-image">
+                        🚪
+                    </div>
+
+                    <div class="category-body">
+
+                        <div class="category-number">
+                            CATEGORY 04
+                        </div>
+
+                        <h3>Hall Entrance Decorations</h3>
+
+                        <div class="tamil-name">
+                            மண்டப நுழைவாயில் அலங்காரம்
+                        </div>
+
+                        <div class="card-actions">
+
+                            <a href="#upload"
+                               class="upload-btn">
+                                📷 Upload
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 5 -->
+
+                <div class="category-card">
+
+                    <div class="no-image">
+                        🌸
+                    </div>
+
+                    <div class="category-body">
+
+                        <div class="category-number">
+                            CATEGORY 05
+                        </div>
+
+                        <h3>Mandapam Decorations</h3>
+
+                        <div class="tamil-name">
+                            மண்டப அலங்காரம்
+                        </div>
+
+                        <div class="card-actions">
+
+                            <a href="#upload"
+                               class="upload-btn">
+                                📷 Upload
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 6 -->
+
+                <div class="category-card">
+
+                    <div class="no-image">
+                        🌼
+                    </div>
+
+                    <div class="category-body">
+
+                        <div class="category-number">
+                            CATEGORY 06
+                        </div>
+
+                        <h3>Flower Kolam</h3>
+
+                        <div class="tamil-name">
+                            மலர் கோலம்
+                        </div>
+
+                        <div class="card-actions">
+
+                            <a href="#upload"
+                               class="upload-btn">
+                                📷 Upload
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 7 -->
+
+                <div class="category-card">
+
+                    <div class="no-image">
+                        🛕
+                    </div>
+
+                    <div class="category-body">
+
+                        <div class="category-number">
+                            CATEGORY 07
+                        </div>
+
+                        <h3>Temple Decorations</h3>
+
+                        <div class="tamil-name">
+                            கோவில் அலங்காரம்
+                        </div>
+
+                        <div class="card-actions">
+
+                            <a href="#upload"
+                               class="upload-btn">
+                                📷 Upload
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 8 -->
+
+                <div class="category-card">
+
+                    <div class="no-image">
+                        🙏
+                    </div>
+
+                    <div class="category-body">
+
+                        <div class="category-number">
+                            CATEGORY 08
+                        </div>
+
+                        <h3>Garlands for Temple Sculptures</h3>
+
+                        <div class="tamil-name">
+                            கோவில் சிலைகளுக்கான மாலைகள்
+                        </div>
+
+                        <div class="card-actions">
+
+                            <a href="#upload"
+                               class="upload-btn">
+                                📷 Upload
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 9 -->
+
+                <div class="category-card">
+
+                    <div class="no-image">
+                        👑
+                    </div>
+
+                    <div class="category-body">
+
+                        <div class="category-number">
+                            CATEGORY 09
+                        </div>
+
+                        <h3>Crowns</h3>
+
+                        <div class="tamil-name">
+                            கிரீடங்கள்
+                        </div>
+
+                        <div class="card-actions">
+
+                            <a href="#upload"
+                               class="upload-btn">
+                                📷 Upload
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 10 -->
+
+                <div class="category-card">
+
+                    <div class="no-image">
+                        💒
+                    </div>
+
+                    <div class="category-body">
+
+                        <div class="category-number">
+                            CATEGORY 10
+                        </div>
+
+                        <h3>Wedding Stage Decorations</h3>
+
+                        <div class="tamil-name">
+                            திருமண மேடை அலங்காரம்
+                        </div>
+
+                        <div class="card-actions">
+
+                            <a href="#upload"
+                               class="upload-btn">
+                                📷 Upload
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- UPLOAD SECTION -->
+
+        <section class="upload-section" id="upload">
+
+            <h2>📷 Upload Flower Image</h2>
+
+            <form
+                action="{{ url_for('upload_flower') }}"
+                method="POST"
+                enctype="multipart/form-data"
+                class="upload-form"
+            >
+
+                <div class="form-group">
+
+                    <label>
+                        Select Category
+                    </label>
+
+                    <select name="category_id" required>
+
+                        <option value="">
+                            Select Category
+                        </option>
+
+                        <option value="1">
+                            Money Garlands
+                        </option>
+
+                        <option value="2">
+                            Wedding Garlands
+                        </option>
+
+                        <option value="3">
+                            House Entrance Decorations
+                        </option>
+
+                        <option value="4">
+                            Hall Entrance Decorations
+                        </option>
+
+                        <option value="5">
+                            Mandapam Decorations
+                        </option>
+
+                        <option value="6">
+                            Flower Kolam
+                        </option>
+
+                        <option value="7">
+                            Temple Decorations
+                        </option>
+
+                        <option value="8">
+                            Garlands for Temple Sculptures
+                        </option>
+
+                        <option value="9">
+                            Crowns
+                        </option>
+
+                        <option value="10">
+                            Wedding Stage Decorations
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Choose Image
+                    </label>
+
+                    <input
+                        type="file"
+                        name="image"
+                        accept="image/*"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
+                    Upload 🌸
+                </button>
+
+            </form>
+
+        </section>
+
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        🌸 Sri Krishna Flower Shop Admin Panel 🌸
+
+        <br>
+
+        <span>
+            Manage your flowers with love.
+        </span>
+
+    </footer>
+
+
+</main>
+
+</body>
+</html>
